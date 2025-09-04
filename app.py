@@ -8,8 +8,12 @@ import pytesseract
 from pdf2image import convert_from_bytes
 from PIL import Image
 
-# Configure Tesseract path
-pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
+# Configure Tesseract path - flexible for different environments
+if os.name == 'nt':  # Windows
+    pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
+else:  # Linux/Unix (Streamlit Cloud)
+    # Streamlit Cloud should have tesseract in PATH
+    pass
 
 # Load environment variables
 load_dotenv()
@@ -248,8 +252,13 @@ def main():
     api_key = None
 
     if model_name == "Perplexity":
-        # Try to get API key from environment variable first
-        api_key = os.getenv("PERPLEXITY_API_KEY")
+        # Try to get API key from Streamlit secrets first, then environment variable
+        api_key = None
+        try:
+            api_key = st.secrets["PERPLEXITY_API_KEY"]
+        except:
+            api_key = os.getenv("PERPLEXITY_API_KEY")
+        
         if not api_key:
             api_key = st.sidebar.text_input("Enter your Perplexity API Key:")
             st.sidebar.markdown("Click [here](https://www.perplexity.ai/settings/api) to get an API key.")
