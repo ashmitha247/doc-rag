@@ -2,6 +2,9 @@
 
 **StudyMate** is an AI-powered study assistant that helps you chat with your PDF documents using advanced RAG (Retrieval-Augmented Generation) technology.
 
+## 🌐 Live Demo
+**[🚀 Try StudyMate Live](https://studymate-doc-rag.streamlit.app)** *(Deploy using instructions below)*
+
 ## ✨ Features
 
 - 📚 **Multi-PDF Support**: Upload and analyze multiple PDF documents
@@ -34,6 +37,27 @@ Create a `.env` file in the root directory:
 ```
 PERPLEXITY_API_KEY=your_perplexity_api_key_here
 ```
+
+### 4. Run the Application
+
+```bash
+streamlit run app.py
+```
+
+The app will be available at:
+- **Local**: http://localhost:8505
+- **Network**: http://your-ip:8505 (for LAN access)
+
+## 🌐 Deploy to Streamlit Cloud (FREE)
+
+1. **Fork this repository** to your GitHub account
+2. **Visit**: https://share.streamlit.io
+3. **Connect GitHub** and select this repository
+4. **Add secrets** in Streamlit dashboard:
+   ```
+   PERPLEXITY_API_KEY = "your_api_key_here"
+   ```
+5. **Deploy!** Your app will be live at: `https://your-app-name.streamlit.app`
 
 ### 4. Install Tesseract OCR
 
