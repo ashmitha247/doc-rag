@@ -1,6 +1,15 @@
-# StudyMate - RAG PDF Chatbot
+# StudyMate - RAG PD- 🧠 **Vector Search**: FAISS-powered semantic search for relevant document chunks
 
+## 🛠 Technology Stack
 **StudyMate** is an AI-powered study assistant that enables intelligent conversations with PDF documents using advanced Retrieval-Augmented Generation (RAG) technology.
+
+## 🚀 Live Demo
+
+Try StudyMate directly in your browser without any setup:
+
+[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://doc-rag.streamlit.app/)
+
+**⏱️ Response Time**: Please allow 1-2 minutes for query processing as the system performs comprehensive document analysis and AI-powered response generation.
 
 ## ✨ Features
 
@@ -91,7 +100,49 @@ Low-Quality Text → Image Preprocessing → Multi-Config OCR → Text Validatio
 - **Multi-Configuration**: Different PSM (Page Segmentation Mode) settings
 - **Quality Control**: Validation ensures OCR output meets academic standards
 
-## 🏗 Architecture Components
+## � RAG Pipeline Visual Flow
+
+```
+📄 PDF Upload
+    ↓
+🔍 Text Extraction (PyMuPDF)
+    ↓
+📊 OCR Fallback (Tesseract) [if needed]
+    ↓
+✂️ Text Chunking (10K chars, 1K overlap)
+    ↓
+🧮 Embedding Generation (SentenceTransformers)
+    ↓
+🗄️ Vector Storage (FAISS Index)
+    ↓
+❓ User Question
+    ↓
+🔎 Similarity Search (Top 4 chunks)
+    ↓
+📝 Context Assembly (LangChain)
+    ↓
+🤖 Prompt Construction:
+    ┌─────────────────────────────────────┐
+    │ Answer from provided context only   │
+    │ Context: [Retrieved Chunks 1-4]     │
+    │ Question: [User Question]           │
+    │ Answer: [LLM Response]              │
+    └─────────────────────────────────────┘
+    ↓
+🎯 Perplexity AI Generation
+    ↓
+💬 Contextual Response
+```
+
+### **Key Technical Specifications**
+- **Chunk Size**: 10,000 characters per chunk
+- **Chunk Overlap**: 1,000 characters between adjacent chunks
+- **Context Retrieval**: Top 4 most similar chunks (FAISS default k=4)
+- **Embedding Model**: "all-MiniLM-L6-v2" (384-dimensional vectors)
+- **Chain Type**: "stuff" (concatenates all chunks into single context)
+- **Temperature**: 0.3 (balanced creativity vs accuracy)
+
+## �🏗 Architecture Components
 
 ### **Frontend Layer**
 - **Streamlit Interface**: File upload, progress tracking, chat interface
