@@ -12,7 +12,15 @@
 - 💡 **Smart Text Processing**: Adaptive text extraction with fallback mechanisms
 - 🧠 **Vector Search**: FAISS-powered semantic search for relevant document chunks
 
-## 🛠 Technology Stack
+## � Live Demo
+
+Try StudyMate directly in your browser without any setup:
+
+[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://doc-rag.streamlit.app/)
+
+**⏱️ Response Time**: Please allow 1-2 minutes for query processing as the system performs comprehensive document analysis and AI-powered response generation.
+
+## �🛠 Technology Stack
 
 ### **Core Framework**
 - **Streamlit**: Web application framework for interactive UI
